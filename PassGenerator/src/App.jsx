@@ -12,9 +12,9 @@ function App() {
 useRef hook ka use mutable object ko store karne ke liye kiya jata hai. Yeh object re-renders ke dauran persist rehta hai aur yeh DOM elements ya kisi bhi variable ko reference karne ke liye istemal hota hai. Iska primary use case DOM access aur state ko maintain karna hota hai.
 */
 
-/* UseCallback:
-useCallback hook ka use function ko memoize karne ke liye hota hai. Jab aapko kisi child component ko prop ke through function pass karna hota hai, toh yeh hook ensure karta hai ki function sirf tab hi recreate ho jab dependencies change ho. Isse unnecessary re-renders bachte hain.
-*/
+  /* UseCallback:
+  useCallback hook ka use function ko memoize karne ke liye hota hai. Jab aapko kisi child component ko prop ke through function pass karna hota hai, toh yeh hook ensure karta hai ki function sirf tab hi recreate ho jab dependencies change ho. Isse unnecessary re-renders bachte hain.
+  */
   const passwordGenerator = useCallback(() => {
     let pass = ""
     let str = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
@@ -29,14 +29,14 @@ useCallback hook ka use function ko memoize karne ke liye hota hai. Jab aapko ki
 
   }, [length, numAllowed, charAllowed])
 
- const PassCopiedToclipboard =useCallback(()=>{
-  passwordRef.current?.select()
-  window.navigator.clipboard.writeText(password)
- },[password])
+  const PassCopiedToclipboard = useCallback(() => {
+    passwordRef.current?.select()
+    window.navigator.clipboard.writeText(password)
+  }, [password])
 
- /* UseEffect:
-useEffect hook ko component ke lifecycle events ko manage karne ke liye use kiya jata hai. Yeh function aapko side effects ko control karne ki flexibility deta hai, jaise data fetching, subscriptions, ya manual DOM manipulations.
-*/
+  /* UseEffect:
+ useEffect hook ko component ke lifecycle events ko manage karne ke liye use kiya jata hai. Yeh function aapko side effects ko control karne ki flexibility deta hai, jaise data fetching, subscriptions, ya manual DOM manipulations.
+ */
 
   useEffect(() => {
     passwordGenerator()
@@ -51,11 +51,11 @@ useEffect hook ko component ke lifecycle events ko manage karne ke liye use kiya
           type="text"
           value={password}
           placeholder='GENERATE PASSWORD ...'
-          readOnly 
-          ref={passwordRef}/>
+          readOnly
+          ref={passwordRef} />
 
         <button className="bg-blue-500 text-black rounded-r-xl px-4 py-2 hover:bg-blue-700"
-        onClick={PassCopiedToclipboard}
+          onClick={PassCopiedToclipboard}
         >Copy</button>
       </div>
 
